@@ -1,17 +1,18 @@
 #Specifically, A pairs with T, and C pairs with G and vice versa.
 def comp(S):
-    new = ""
+    new = ''
     for x in S:
         if x == "A":
-            new + "T"
+            new = new + ("T")
         elif x == "C":
-            new + "G"
+            new = new + ("G")
         elif x == "G":
-            new + "C"
+            new = new + ("C")
         elif x == "T":
-            new + "A"
+            new = new + ("A")
     return new
 S = input("")
 
-new = comp(S)
-print(new)
+Complement = comp(S)
+
+print(Complement)
