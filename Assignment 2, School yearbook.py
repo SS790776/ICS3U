@@ -1,7 +1,16 @@
+"""
+    Sean Shi
+    790776
+    10/23/2024
+    ISC3U Assignment 2
+    
+"""
 import math as m
 
 def factors(N):
+    """
     
+    """
     facts = []
     index = m.floor(m.sqrt(N))
     for x in range(1, index+1):
