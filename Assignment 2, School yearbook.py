@@ -34,7 +34,7 @@ def factors(N):
 p = 1 #make p = 1, which be like "True"
 
 print("The School Yearbook Planner Program! ")
-print("If at any time you wish to stop the program, type 'none' \n")
+print("If at any time you wish to stop the program, type 'done' \n")
 
 while p == 1: #keep looping as long as p = 1
     N = input("Please enter the number of photographs: ") #get the user input
@@ -52,7 +52,7 @@ while p == 1: #keep looping as long as p = 1
             print(f"The minimum perimiter is {2*(best + ndbest)}, with dimensions {best}x{ndbest}. \n") #output the most efficient perimeter (2 multiplied by (best + ndbest)) and the dimensions "best" by "ndbest"
             p = 1 #and ask for user input again
     except ValueError: #python threw an exception while trying to turn N into an integer, so N would not be an integer.
-        if N == "none" or N == "None" or N== "NONE": #if the user inputted a variatioin of "none" then we know they're trying to stop the program
+        if N == "done" or N == "Done" or N== "DONE": #if the user inputted a variation of "done" then we know they're trying to stop the program
             print("Hope we've helped, happy yearbook planning!")
             p = 0 #stop the loop so the program ends.
         else:#anything else and we don't know what the user is trying to say
