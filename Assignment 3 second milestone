@@ -42,12 +42,7 @@ try:
 
     for i in range(int(ydim)):
         line = fh.readline()
-        line = line.
-except OSError as err:
-    print("OSError: ", err)
-except EOFError as err2:
-    print("EOFError: ", err2)
-replace('\n', '')
+        line = line.replace('\n', '')
         image.append(line)
 
 
@@ -68,7 +63,7 @@ counter = 0
 space = 2
 size = 4
 
-upsidedown = True
+upsidedown = False
 
 
 if not upsidedown:
