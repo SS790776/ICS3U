@@ -42,7 +42,12 @@ try:
 
     for i in range(int(ydim)):
         line = fh.readline()
-        line = line.replace('\n', '')
+        line = line.
+except OSError as err:
+    print("OSError: ", err)
+except EOFError as err2:
+    print("EOFError: ", err2)
+replace('\n', '')
         image.append(line)
 
 
@@ -60,27 +65,32 @@ turtle.tracer(0,0)
 print(colour)
 print(image)
 counter = 0
-t.goto(int(xdim)*-3/2,int(ydim)*3/2)
-position = t.pos()
+space = 2
+size = 4
+
+upsidedown = True
 
 
 if not upsidedown:
-    for i in image:
-        counter += 3
-        t.goto(position[0],position[1]-counter)
-        for x in i:
-            pointc = colour[x]
-            t.dot(3,pointc)
-            t.forward(3)
-elif upsidedown:
-    t.goto(int(xdim)*-3/2,int(ydim)*3/2)
+    t.goto(int(xdim)*-space/2,int(ydim)*space/2)
     position = t.pos()
     for i in image:
-        counter += 3
+        counter += space
         t.goto(position[0],position[1]-counter)
         for x in i:
             pointc = colour[x]
-            t.dot(3,pointc)
-            t.forward(3)
+            t.dot(size,pointc)
+            t.forward(space)
+elif upsidedown:
+    t.goto(int(xdim)*space/2,int(ydim)*-space/2)
+    position = t.pos()
+    for i in image:
+        counter += space
+        t.goto(position[0],position[1]+counter)
+        for x in i:
+            pointc = colour[x]
+            t.dot(size,pointc)
+            t.backward(space)
+            
 turtle.update()
 print("done!")
