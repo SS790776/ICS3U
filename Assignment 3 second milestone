@@ -11,6 +11,29 @@ U5 L2
 
 import turtle
 
+def uprightgraph(xdim,ydim,space,size):
+    counter = 0
+    t.goto(int(xdim)*-space/2,int(ydim)*space/2)
+    position = t.pos()
+    for i in image:
+        counter += space
+        t.goto(position[0],position[1]-counter)
+        for x in i:
+            pointc = colour[x]
+            t.dot(size,pointc)
+            t.forward(space)
+
+def upsidedowngraph(xdim,ydim,space,size):
+    counter = 0 
+    t.goto(int(xdim)*space/2,int(ydim)*-space/2)
+    position = t.pos()
+    for i in image:
+        counter += space
+        t.goto(position[0],position[1]+counter)
+        for x in i:
+            pointc = colour[x]
+            t.dot(size,pointc)
+            t.backward(space)
 t = turtle.Turtle()
 
 file = "rocky_bullwinkle_mod.xpm"
@@ -57,35 +80,20 @@ except EOFError as err2:
 t.penup()
 t.hideturtle()
 turtle.tracer(0,0)
-print(colour)
-print(image)
+
 counter = 0
 space = 2
 size = 4
 
-upsidedown = False
+degrees = 0
 
 
-if not upsidedown:
-    t.goto(int(xdim)*-space/2,int(ydim)*space/2)
-    position = t.pos()
-    for i in image:
-        counter += space
-        t.goto(position[0],position[1]-counter)
-        for x in i:
-            pointc = colour[x]
-            t.dot(size,pointc)
-            t.forward(space)
-elif upsidedown:
-    t.goto(int(xdim)*space/2,int(ydim)*-space/2)
-    position = t.pos()
-    for i in image:
-        counter += space
-        t.goto(position[0],position[1]+counter)
-        for x in i:
-            pointc = colour[x]
-            t.dot(size,pointc)
-            t.backward(space)
-            
+
+if degrees == 0:
+    uprightgraph(xdim,ydim,space,size)
+
+elif degrees == 180:
+    upsidedowngraph(xdim,ydim,space,size)
+    
 turtle.update()
 print("done!")
