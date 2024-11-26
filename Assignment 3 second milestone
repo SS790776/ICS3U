@@ -12,18 +12,20 @@ U5 L2
 import turtle
 
 def uprightgraph(xdim,ydim,space,size):
+    print("ploting...")
     counter = 0
     t.goto(int(xdim)*-space/2,int(ydim)*space/2)
     position = t.pos()
     for i in image:
         counter += space
-        t.goto(position[0],position[1]-counter)
+        t.goto(position[0],position[1]-counter-counte)
         for x in i:
             pointc = colour[x]
             t.dot(size,pointc)
             t.forward(space)
 
 def upsidedowngraph(xdim,ydim,space,size):
+    print("plotting...")
     counter = 0 
     t.goto(int(xdim)*space/2,int(ydim)*-space/2)
     position = t.pos()
@@ -34,9 +36,38 @@ def upsidedowngraph(xdim,ydim,space,size):
             pointc = colour[x]
             t.dot(size,pointc)
             t.backward(space)
+def ninetygraph(xdim,ydim,space,size):
+    print("ploting...")
+    counter = 0
+    t.goto(int(xdim)*-space/2,int(ydim)*-space/2)
+    position = t.pos()
+    t.left(90)
+    for i in image:
+        counter += space
+        t.goto(position[0]+counter,position[1])
+        for x in i:
+            pointc = colour[x]
+            t.dot(size,pointc)
+            t.forward(space)
+def twoseventygraph(xdim,ydim,space,size):
+    print("ploting...")
+    counter = 0
+    t.goto(int(xdim)*space/2,int(ydim)*-space/2)
+    position = t.pos()
+    t.left(90)
+    for i in image:
+        counter += space
+        t.goto(position[0]+counter,position[1])
+        for x in i:
+            pointc = colour[x]
+            t.dot(size,pointc)
+            t.forward(space)
+
+
+
 t = turtle.Turtle()
 
-file = "rocky_bullwinkle_mod.xpm"
+file = "smiley_emoji_mod.xpm"
 firstinf = []
 try:
     fh = open(file, "r") #open file
@@ -85,15 +116,40 @@ counter = 0
 space = 2
 size = 4
 
-degrees = 0
+print("""Please enter the desired spacing and size of the dots.
+*Recommended amount is space = 2 and size = 4""")
+space = int(input("Space: "))
+size = int(input("Size: "))
 
 
+rotation = input("Please enter the desired rotation (0, 90, 180, 270): ")
 
-if degrees == 0:
+if rotation == "0":
     uprightgraph(xdim,ydim,space,size)
 
-elif degrees == 180:
+elif rotation == "180":
     upsidedowngraph(xdim,ydim,space,size)
+
+elif rotation == "90":
+    ninetygraph(xdim,ydim,space,size)
+
+elif rotation == "270":
+    twoseventygraph(xdim,ydim,space,size)
+
+else:
+    print("You did not give a valid rotation number")
     
 turtle.update()
-print("done!")
+print("Done! Please check to see if the Turtle graphics window has opened.")
+
+stop = 1
+while stop == 1:
+    yn = input("Flip? Y/N: ")
+    if yn == "y" or yn == "Y":
+        pass
+        turtle.update()
+        print("Done! Please check to see if the Turtle graphics window has opened.")
+    elif yn == "n" or yn == "N":
+        stop = 0
+    else:
+        print("not a valid response")
