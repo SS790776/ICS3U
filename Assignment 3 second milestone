@@ -62,7 +62,8 @@ def twoseventygraph(xdim,ydim,space,size):
             pointc = colour[x]
             t.dot(size,pointc)
             t.forward(space)
-
+def rotate(xdim,ydim,space,size,rotation):
+    
 
 
 t = turtle.Turtle()
@@ -122,7 +123,7 @@ space = int(input("Space: "))
 size = int(input("Size: "))
 
 
-rotation = input("Please enter the desired rotation (0, 90, 180, 270): ")
+rotation = int(input("Please enter the desired rotation (0, 90, 180, 270): "))
 
 if rotation == "0":
     uprightgraph(xdim,ydim,space,size)
