@@ -64,10 +64,14 @@ def twoseventygraph(xdim,ydim,space,size):
             t.forward(space)
 def rotate(xdim,ydim,space,size,rotation):
     turtle.clear()
+    t.penup()
+    t.hideturtle()
+    turtle.tracer(0,0)
     print(rotation)
     if rotation == 0:
         ninetygraph(xdim,ydim,space,size)
     elif rotation == 90:
+        print("yes")
         upsidedowngraph(xdim,ydim,space,size)
     elif rotation == 180:
         twoseventygraph(xdim,ydim,space,size)
