@@ -54,6 +54,7 @@ except OSError as err:
 except EOFError as err2:
     print("EOFError: ", err2)
 
+turtle.bgcolor("gray40")
 t.penup()
 t.hideturtle()
 turtle.tracer(0,0)
