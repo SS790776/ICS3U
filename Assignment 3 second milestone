@@ -18,7 +18,7 @@ def uprightgraph(xdim,ydim,space,size):
     position = t.pos()
     for i in image:
         counter += space
-        t.goto(position[0],position[1]-counter-counte)
+        t.goto(position[0],position[1]-counter)
         for x in i:
             pointc = colour[x]
             t.dot(size,pointc)
@@ -52,7 +52,7 @@ def ninetygraph(xdim,ydim,space,size):
 def twoseventygraph(xdim,ydim,space,size):
     print("ploting...")
     counter = 0
-    t.goto(int(xdim)*space/2,int(ydim)*-space/2)
+    t.goto(int(xdim)*-space/2,int(ydim)*-space/2)
     position = t.pos()
     t.left(90)
     for i in image:
@@ -63,7 +63,18 @@ def twoseventygraph(xdim,ydim,space,size):
             t.dot(size,pointc)
             t.forward(space)
 def rotate(xdim,ydim,space,size,rotation):
-    
+    turtle.clear()
+    print(rotation)
+    if rotation == 0:
+        ninetygraph(xdim,ydim,space,size)
+    elif rotation == 90:
+        upsidedowngraph(xdim,ydim,space,size)
+    elif rotation == 180:
+        twoseventygraph(xdim,ydim,space,size)
+    elif rotation == 270:
+        uprightgraph(xdim,ydim,space,size)
+    turtle.update()
+
 
 
 t = turtle.Turtle()
@@ -122,23 +133,29 @@ print("""Please enter the desired spacing and size of the dots.
 space = int(input("Space: "))
 size = int(input("Size: "))
 
+p = 1
+while p == 1:
+    try:
+        rotation = int(input("Please enter the desired rotation (0, 90, 180, 270): "))
+        p = 0
+    except ValueError:
+        print("You did not give an integer, please try again \n")
+        p = 1
+    if rotation == 0:
+        uprightgraph(xdim,ydim,space,size)
 
-rotation = int(input("Please enter the desired rotation (0, 90, 180, 270): "))
+    elif rotation == 180:
+        upsidedowngraph(xdim,ydim,space,size)
 
-if rotation == "0":
-    uprightgraph(xdim,ydim,space,size)
+    elif rotation == 90:
+        ninetygraph(xdim,ydim,space,size)
 
-elif rotation == "180":
-    upsidedowngraph(xdim,ydim,space,size)
+    elif rotation == 270:
+        twoseventygraph(xdim,ydim,space,size)
 
-elif rotation == "90":
-    ninetygraph(xdim,ydim,space,size)
-
-elif rotation == "270":
-    twoseventygraph(xdim,ydim,space,size)
-
-else:
-    print("You did not give a valid rotation number")
+    else:
+        print("You did not give a valid rotation number, please try again")
+        p = 1
     
 turtle.update()
 print("Done! Please check to see if the Turtle graphics window has opened.")
@@ -147,10 +164,15 @@ stop = 1
 while stop == 1:
     yn = input("Flip? Y/N: ")
     if yn == "y" or yn == "Y":
-        pass
-        turtle.update()
+        rotate(xdim,ydim,space,size,rotation)
+        
+        rotation += 90
+        
         print("Done! Please check to see if the Turtle graphics window has opened.")
+        
+        stop = 1
     elif yn == "n" or yn == "N":
         stop = 0
+        print("Thanks for using this program!")
     else:
         print("not a valid response")
