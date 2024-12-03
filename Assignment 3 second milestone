@@ -3,7 +3,8 @@ Sean S
 11/20/2024
 ICS3U 
 U5 L2
-    Variable dictionary
+
+Variable dictionary:
     t = turtle.turtle()
     file = "rocky_bullwinkle_mod.xpm"
     array, holds array
@@ -11,11 +12,11 @@ U5 L2
 
 import turtle
 
+
 def uprightgraph(xdim,ydim,space,size):
     print("ploting...")
     counter = 0
-    t.shape('square')
-    t.turtlesize(size,size)
+    
     t.goto(int(xdim)*-space/2,int(ydim)*space/2)
     position = t.pos()
     for i in image:
@@ -24,14 +25,13 @@ def uprightgraph(xdim,ydim,space,size):
         for x in i:
             pointc = colour[x]
             t.color(pointc)
-            t.stamp()
+            t.dot(size,pointc)
             t.forward(space)
 
 def upsidedowngraph(xdim,ydim,space,size):
     print("plotting...")
     counter = 0
-    t.shape('square')
-    t.turtlesize(size,size)
+    
     t.goto(int(xdim)*space/2,int(ydim)*-space/2)
     position = t.pos()
     for i in image:
@@ -40,29 +40,27 @@ def upsidedowngraph(xdim,ydim,space,size):
         for x in i:
             pointc = colour[x]
             t.color(pointc)
-            t.stamp()
+            t.dot(size,pointc)
             t.backward(space)
 def ninetygraph(xdim,ydim,space,size):
     print("ploting...")
     counter = 0
-    t.shape('square')
-    t.turtlesize(size,size)
-    t.goto(int(xdim)*-space/2,int(ydim)*-space/2)
+    
+    t.goto(int(xdim)*space/2,int(ydim)*space/2)
     position = t.pos()
-    t.left(90)
+    t.right(90)
     for i in image:
         counter += space
-        t.goto(position[0]+counter,position[1])
+        t.goto(position[0]-counter,position[1])
         for x in i:
             pointc = colour[x]
             t.color(pointc)
-            t.stamp()
+            t.dot(size,pointc)
             t.forward(space)
 def twoseventygraph(xdim,ydim,space,size):
     print("ploting...")
     counter = 0
-    t.shape('square')
-    t.turtlesize(size,size)
+    
     t.goto(int(xdim)*-space/2,int(ydim)*-space/2)
     position = t.pos()
     t.left(90)
@@ -72,7 +70,7 @@ def twoseventygraph(xdim,ydim,space,size):
         for x in i:
             pointc = colour[x]
             t.color(pointc)
-            t.stamp()
+            t.dot(size,pointc)
             t.forward(space)
 def rotate(xdim,ydim,space,size,rotation):
     turtle.clear()
@@ -97,6 +95,10 @@ t = turtle.Turtle()
 
 file = "smiley_emoji_mod.xpm"
 #file = "txt.txt"
+#file = "rocky_bullwinkle_mod.xpm"
+
+#ASK FOR FILE INPUT!!!!
+#BACKGROUND COLOUR
 firstinf = []
 try:
     fh = open(file, "r") #open file
@@ -138,8 +140,8 @@ except EOFError as err2:
     print("EOFError: ", err2)
 
 t.penup()
-#t.hideturtle()
-#turtle.tracer(0,0)
+t.hideturtle()
+turtle.tracer(0,0)
 
 space = 2
 size = 4
@@ -173,7 +175,7 @@ while p == 1:
         print("You did not give a valid rotation number, please try again")
         p = 1
     
-#turtle.update()
+turtle.update()
 print("Done! Please check to see if the Turtle graphics window has opened.")
 
 stop = 1
