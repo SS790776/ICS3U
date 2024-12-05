@@ -5,11 +5,13 @@ ICS3U
 U5 L2
 
 Variable dictionary:
-    t = turtle.turtle(), makes for coding lines and using the turtle object functions a lot
+    t - turtle.turtle(), makes for coding lines and using the turtle object functions a lot
         easier
-    file = a string that holds the name of the xpm file the code needs to use in order to
+    file - a string that holds the name of the xpm file the code needs to use in order to
         plot the dots
-    
+    firstinf - an array that holds the information from the first line of the file.
+        This includes the x and y dimensions, and the total number of colours
+    xdim - 
     
 """
 
