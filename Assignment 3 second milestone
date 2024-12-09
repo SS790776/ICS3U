@@ -6,12 +6,36 @@ U5 L2
 
 Variable dictionary:
     t - turtle.turtle(), makes for coding lines and using the turtle object functions a lot
-        easier
+        easier.
     file - a string that holds the name of the xpm file the code needs to use in order to
-        plot the dots
+        plot the dots.
+    fh - open(file, "r"), makes for opening files a lot easier,
+        instead of needing to code out the whole function I could just use fh.readline().
+    line - a string that holds the current line being read, will extract information from
+        this variable.
     firstinf - an array that holds the information from the first line of the file.
-        This includes the x and y dimensions, and the total number of colours
-    xdim - 
+        This includes the x and y dimensions, and the total number of colours.
+    xdim - a variable split from firstinf that contains the x/horizontal dimension
+        of the xpm file that needs to be drawn.
+    ydim - a variable split from firstinf that contains the y/vertical dimension
+        of the xpm file that needs to be drawn.
+    colournum - a variable split from firstinf, holds the total number of colours
+        needed to draw the picture.
+    colour - a dictionary that holds the colours and their corresponding symbol.
+    symb - a temporary variable split from line that holds the corresponding symbol
+        of a colour.
+    c - a variable needed for unpacking and splitting colour definitions.
+    rainbow - a temporary variable split from line that holds the colour corresponding
+        to a symbol.
+    image - an array that holds all of the characters/symbols of the image,
+        each index being a seperate line.
+    err - a variable that holds the error message for OSError
+    err2 - a variable that holds the error message for EOFError
+    u - an integer that is either 1 or 0, a condition for a while loop.
+    o - an integer that is either 1 or 0, a condition for a while loop.
+    p - an integer that is either 1 or 0, a condition for a while loop.
+    ld - a string that holds the user input for background customisation.
+        L for light grey, D for dark grey, and W for white.
     
 """
 
