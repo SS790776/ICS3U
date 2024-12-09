@@ -103,10 +103,19 @@ t = turtle.Turtle()
 #file = "cool_smiley_mod.xpm"
 #file = "rocky_bullwinkle_mod.xpm"
 
-print("What file would you like to draw?")
+print("""What file would you like to draw?
+(1)'rocky_bullwinkle_mod.xpm' (2)'smiley_emoji_mod.xpm'
+(3)'cool_smiley_mod.xpm'  or  (4) 'insert the file name of your choosing'""")
 
-file = input("eg.'smiley_emoji_mod.xpm','rocky_bullwinkle_mod.xpm': ")
-
+file = input("")
+if file == '1':
+    file = "rocky_bullwinkle_mod.xpm"
+elif file == '2':
+    file = "smiley_emoji_mod.xpm"
+elif file == '3':
+    file = "cool_smiley_mod.xpm"
+else:
+    pass
 firstinf = []
 try:
     fh = open(file, "r") #open file
@@ -169,7 +178,7 @@ while u == 1:
         u = 1
 
 o = 1
-print("""Please enter the desired spacing and size of the stamps.
+print("""Please enter the desired spacing and size of the dots.
 *Recommended amount is space = 2 and size = 4""")
 while o == 1:
     try:
