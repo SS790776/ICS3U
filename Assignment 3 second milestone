@@ -36,7 +36,15 @@ Variable dictionary:
     p - an integer that is either 1 or 0, a condition for a while loop.
     ld - a string that holds the user input for background customisation.
         L for light grey, D for dark grey, and W for white.
-    
+    space - an integer that holds the desired spacing of the dots when drawing.
+    size - an integer that holds the desired size of the dots when drawing.
+    rotation - an integer that holds the desired rotation in degrees when drawing.
+    counter - an integer that keeps count of the amount of lines drawn. Is used
+        for calculations when drawing.
+    position - a variable that holds the turtle's calculated starting position
+        when drawing.
+    pointc - a temporary variable that holds the corresponding colour of a symbol
+        when drawing.
 """
 
 import turtle
