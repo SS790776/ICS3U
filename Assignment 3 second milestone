@@ -54,11 +54,19 @@ def uprightgraph(xdim,ydim,space,size):
     """
     upright graph takes the x and y dimensions, space and size of dots, and draws the
         image at an upright 0 degree angle.
-    :param xdim: N is an integer, most likely the amount of photos.
-    :return: returns an array of all of the factors of N up to the square root 
-        (half of the factors)
-    facts = the array that will hold the return value of half of the factors
-    index = the floored value of the square root of N
+    :param xdim: xdim is an integer, the x dimension of the drawing so we know when to
+        stop drawing for a line.
+    :param ydim: ydim is an integer, the y dimension of the drawing so we know when the
+        last line is to stop drawing.
+    :param space: space is an integer, holds the desired spacing of the dots when drawing.
+    :param size: size is an integer, holds the desired size of the dots when drawing.
+
+    :return: draws the image based off of the xpm file and finishes the function.
+    
+    counter - an integer that keeps count of the amount of lines drawn. Is used
+        for calculations when drawing.
+    position - a variable that holds the turtle's calculated starting position
+        when drawing.
     """ 
     print("ploting...")
     counter = 0
