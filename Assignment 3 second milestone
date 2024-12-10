@@ -52,7 +52,7 @@ import turtle
 
 def uprightgraph(xdim,ydim,space,size):
     """
-    upright graph takes the x and y dimensions, space and size of dots, and draws the
+    uprightgraph takes the x and y dimensions, space and size of dots, and draws the
         image at an upright 0 degree angle.
     :param xdim: xdim is an integer, the x dimension of the drawing so we know when to
         stop drawing for a line.
@@ -83,6 +83,23 @@ def uprightgraph(xdim,ydim,space,size):
             t.forward(space)
 
 def upsidedowngraph(xdim,ydim,space,size):
+    """
+    upsidedowngraph takes the x and y dimensions, space and size of dots, and draws the
+        image at an upside down 180 degree angle.
+    :param xdim: xdim is an integer, the x dimension of the drawing so we know when to
+        stop drawing for a line.
+    :param ydim: ydim is an integer, the y dimension of the drawing so we know when the
+        last line is to stop drawing.
+    :param space: space is an integer, holds the desired spacing of the dots when drawing.
+    :param size: size is an integer, holds the desired size of the dots when drawing.
+
+    :return: draws the image based off of the xpm file and finishes the function.
+    
+    counter - an integer that keeps count of the amount of lines drawn. Is used
+        for calculations when drawing.
+    position - a variable that holds the turtle's calculated starting position
+        when drawing.
+    """ 
     print("plotting...")
     counter = 0
     
@@ -97,6 +114,23 @@ def upsidedowngraph(xdim,ydim,space,size):
             t.dot(size,pointc)
             t.backward(space)
 def ninetygraph(xdim,ydim,space,size):
+    """
+    ninetygraph takes the x and y dimensions, space and size of dots, and draws the
+        image at a rotated 90 degree angle.
+    :param xdim: xdim is an integer, the x dimension of the drawing so we know when to
+        stop drawing for a line.
+    :param ydim: ydim is an integer, the y dimension of the drawing so we know when the
+        last line is to stop drawing.
+    :param space: space is an integer, holds the desired spacing of the dots when drawing.
+    :param size: size is an integer, holds the desired size of the dots when drawing.
+
+    :return: draws the image based off of the xpm file and finishes the function.
+    
+    counter - an integer that keeps count of the amount of lines drawn. Is used
+        for calculations when drawing.
+    position - a variable that holds the turtle's calculated starting position
+        when drawing.
+    """ 
     print("ploting...")
     counter = 0
     
@@ -112,6 +146,23 @@ def ninetygraph(xdim,ydim,space,size):
             t.dot(size,pointc)
             t.forward(space)
 def twoseventygraph(xdim,ydim,space,size):
+    """
+    twoseventygraph takes the x and y dimensions, space and size of dots, and draws the
+        image at a rotated 270 degree angle.
+    :param xdim: xdim is an integer, the x dimension of the drawing so we know when to
+        stop drawing for a line.
+    :param ydim: ydim is an integer, the y dimension of the drawing so we know when the
+        last line is to stop drawing.
+    :param space: space is an integer, holds the desired spacing of the dots when drawing.
+    :param size: size is an integer, holds the desired size of the dots when drawing.
+
+    :return: draws the image based off of the xpm file and finishes the function.
+    
+    counter - an integer that keeps count of the amount of lines drawn. Is used
+        for calculations when drawing.
+    position - a variable that holds the turtle's calculated starting position
+        when drawing.
+    """ 
     print("ploting...")
     counter = 0
     
