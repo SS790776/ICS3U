@@ -71,16 +71,19 @@ def uprightgraph(xdim,ydim,space,size):
     print("ploting...") #tell the user that turtle is currently plotting
     counter = 0 #create variable counter and assign to a value of 0
     
-    t.goto(int(xdim)*-space/2,int(ydim)*space/2)
-    position = t.pos()
-    for i in image:
-        counter += space
+    #make the turtle go to the coordinates of xdim*-space/2, ydim*space/2
+    #this coordinate places the turtle at the perfect position top left to create
+    #a centered drawing
+    t.goto(int(xdim)*-space/2,int(ydim)*space/2) 
+    position = t.pos() #assign the current position coordinates to variable position
+    for i in image: #iterate through each index (line) of the array image
+        counter += space #add the value of space to the counter
+        #go to the value of counter below the original starting point
         t.goto(position[0],position[1]-counter)
-        for x in i:
-            pointc = colour[x]
-            t.color(pointc)
-            t.dot(size,pointc)
-            t.forward(space)
+        for x in i: #iterate through each element in the current line
+            pointc = colour[x] #get the corresponding colour of the current symbol
+            t.dot(size,pointc) #create the dot with the desired size and corresponding colour
+            t.forward(space) #move forward (to the right) one space
 
 def upsidedowngraph(xdim,ydim,space,size):
     """
@@ -110,7 +113,6 @@ def upsidedowngraph(xdim,ydim,space,size):
         t.goto(position[0],position[1]+counter)
         for x in i:
             pointc = colour[x]
-            t.color(pointc)
             t.dot(size,pointc)
             t.backward(space)
 def ninetygraph(xdim,ydim,space,size):
@@ -142,7 +144,6 @@ def ninetygraph(xdim,ydim,space,size):
         t.goto(position[0]-counter,position[1])
         for x in i:
             pointc = colour[x]
-            t.color(pointc)
             t.dot(size,pointc)
             t.forward(space)
 def twoseventygraph(xdim,ydim,space,size):
