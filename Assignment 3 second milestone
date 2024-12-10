@@ -73,7 +73,7 @@ def uprightgraph(xdim,ydim,space,size):
     
     #make the turtle go to the coordinates of xdim*-space/2, ydim*space/2
     #this coordinate places the turtle at the perfect position top left to create
-    #a centered drawing
+    #a centered upright drawing
     t.goto(int(xdim)*-space/2,int(ydim)*space/2) 
     position = t.pos() #assign the current position coordinates to variable position
     for i in image: #iterate through each index (line) of the array image
@@ -83,7 +83,7 @@ def uprightgraph(xdim,ydim,space,size):
         for x in i: #iterate through each element in the current line
             pointc = colour[x] #get the corresponding colour of the current symbol
             t.dot(size,pointc) #create the dot with the desired size and corresponding colour
-            t.forward(space) #move forward (to the right) one space
+            t.forward(space) #move forward (to the right) by the value of space
 
 def upsidedowngraph(xdim,ydim,space,size):
     """
@@ -103,18 +103,22 @@ def upsidedowngraph(xdim,ydim,space,size):
     position - a variable that holds the turtle's calculated starting position
         when drawing.
     """ 
-    print("plotting...")
-    counter = 0
+    print("plotting...") #tell the user that turtle is currently plotting
+    counter = 0 #create variable counter and assign to a value of 0
     
+    #make the turtle go to the coordinates of xdim*space/2, ydim*-space/2
+    #this coordinate places the turtle at the perfect position bottom right to create
+    #a centered upside down drawing
     t.goto(int(xdim)*space/2,int(ydim)*-space/2)
-    position = t.pos()
-    for i in image:
-        counter += space
+    position = t.pos() #assign the current position coordinates to variable position
+    for i in image: #iterate through each index (line) of the array image
+        counter += space #add the value of space to the counter
+        #go to the value of counter above the original starting point
         t.goto(position[0],position[1]+counter)
-        for x in i:
-            pointc = colour[x]
-            t.dot(size,pointc)
-            t.backward(space)
+        for x in i: #iterate through each element in the current line
+            pointc = colour[x] #get the corresponding colour of the current symbol
+            t.dot(size,pointc) #create the dot with the desired size and corresponding colour
+            t.backward(space) #move backwards (to the left) by the value of space
 def ninetygraph(xdim,ydim,space,size):
     """
     ninetygraph takes the x and y dimensions, space and size of dots, and draws the
