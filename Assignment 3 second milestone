@@ -196,65 +196,75 @@ def rotate(xdim,ydim,space,size,rotation):
 
 
 
-t = turtle.Turtle()
+t = turtle.Turtle() #for easier coding while using functions in turtle
 
 #the three files used for the assignment
 #file = "smiley_emoji_mod.xpm"
 #file = "cool_smiley_mod.xpm"
 #file = "rocky_bullwinkle_mod.xpm"
 
+#ask the user for file input
 print("""What file would you like to draw?
 (1)'rocky_bullwinkle_mod.xpm' (2)'smiley_emoji_mod.xpm'
 (3)'cool_smiley_mod.xpm'  or  (4) 'insert the file name of your choosing'""")
 
-file = input("")
-if file == '1':
+file = input("") #take in the input as a string
+if file == '1': #if the input is "1" then the file is rocky_bulliwnkle_mod.xpm
     file = "rocky_bullwinkle_mod.xpm"
-elif file == '2':
+elif file == '2': #if the input is "2" then the file is smiley_emoji_mod.xpm
     file = "smiley_emoji_mod.xpm"
-elif file == '3':
+elif file == '3': #if the input is "3" then the file is cool_smiley_mod.xpm
     file = "cool_smiley_mod.xpm"
-else:
+else: 
+    #and if the input is not "1" "2" or "3" then the file name would be what was typed
     pass
-firstinf = []
+firstinf = [] #create the array for the first line of information
 try:
-    fh = open(file, "r") #open file
-    firstinf = fh.readline()
-    xdim, ydim, colournum = firstinf.split(" ")
+    fh = open(file, "r") #open the file
+    firstinf = fh.readline() #assign firstinf to the first line of the file
+    #split the first line of the file and assign into the x dimension, y dimension, 
+    #and total number of colours.
+    xdim, ydim, colournum = firstinf.split(" ") 
 
-    colour = {
+    colour = { #create the colour dictionary to store colours and corresponding symbols
         
         }
     
-    for x in range(int(colournum)):
-        line = fh.readline()
-        line.strip()
-        symb, c, rainbow = line.split()
+    for x in range(int(colournum)): #iterate for every colour
+        line = fh.readline() #read the next line
+        line.strip() #strip the leading/trailing whitespace from the text of the line
+        #split and assign the line into symb (the symbol, c, and rainbow (the colour)
+        symb, c, rainbow = line.split() 
         
-        if symb == "~":
+        if symb == "~": #if the symbol is "~" then assume it is a space " "
             symb = " "
+            #put the symbol and corresponding colour together into the dictionary
+            colour.update({symb:rainbow}) 
+
+        else: #if the symbol is not "~"
+            #put the symbol and corresponding colour together into the dictionary
             colour.update({symb:rainbow})
-
-        else:
-            colour.update({symb:rainbow})
     
     
     
-    image = []
+    image = [] #create array that will store the symbols/characters of the image
 
-    for i in range(int(ydim)):
-        line = fh.readline()
-        line = line.replace('\n', '')
-        image.append(line)
+    for i in range(int(ydim)): #iterate through each line
+        line = fh.readline()#read the next line
+        #get rid of the "\n" endline character from what we're extracting
+        line = line.replace('\n', '') 
+        image.append(line) #add the extracted line into the image array
 
 
 
 
-    fh.close()
-except OSError as err:
-    print("OSError: ", err)
-except EOFError as err2:
-    print("EOFError: ", err2)
+    fh.close()#close the file as we're done extracting information from it
+except OSError as err: #if there is an operating system error, catch it
+    print("OSError: ", err) #print out the error
+    exit() #stop the program
+except EOFError as err2: #if there is an error opening file error, catch it
+    print("EOFError: ", err2) #print out the error
+    exit() #stop the program
 
 t.penup()
 t.hideturtle()
