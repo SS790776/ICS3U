@@ -2,7 +2,7 @@
 Sean S
 11/20/2024
 ICS3U 
-Assignment 3 - Making a graphics plotter in Turtle
+U5 L2
 
 Variable dictionary:
     t - turtle.turtle(), makes for coding lines and using the turtle object functions a lot
@@ -200,7 +200,7 @@ t = turtle.Turtle() #for easier coding while using functions in turtle
 #ask the user for file input
 print("""What file would you like to draw?
 (1)'rocky_bullwinkle_mod.xpm' (2)'smiley_emoji_mod.xpm'
-(3)'cool_smiley_mod.xpm'  or  (4) 'insert the file name of your choosing'""")
+(3)'cool_smiley_mod.xpm'  or  insert the file name of your choosing""")
 
 file = input("") #take in the input as a string
 if file == '1': #if the input is "1" then the file is rocky_bulliwnkle_mod.xpm
