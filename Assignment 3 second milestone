@@ -137,19 +137,23 @@ def ninetygraph(xdim,ydim,space,size):
     position - a variable that holds the turtle's calculated starting position
         when drawing.
     """ 
-    print("ploting...")
-    counter = 0
+    print("ploting...") #tell the user that turtle is currently plotting
+    counter = 0 #create variable counter and assign to a value of 0
     
+    #make the turtle go to the coordinates of xdim*space/2, ydim*space/2
+    #this coordinate places the turtle at the perfect position top right to create
+    #a centered 90 degree drawing
     t.goto(int(xdim)*space/2,int(ydim)*space/2)
-    position = t.pos()
-    t.right(90)
-    for i in image:
-        counter += space
+    position = t.pos() #assign the current position coordinates to variable position
+    t.right(90) #turn the turtle object right by 90 degrees so it faces down
+    for i in image: #iterate through each index (line) of the array image
+        counter += space #add the value of space to the counter
+        #go to the value of counter to the left of the original starting point
         t.goto(position[0]-counter,position[1])
-        for x in i:
-            pointc = colour[x]
-            t.dot(size,pointc)
-            t.forward(space)
+        for x in i: #iterate through each element in the current line
+            pointc = colour[x] #get the corresponding colour of the current symbol
+            t.dot(size,pointc) #create the dot with the desired size and corresponding colour
+            t.forward(space) #move forward (downwards) by the value of space
 def twoseventygraph(xdim,ydim,space,size):
     """
     twoseventygraph takes the x and y dimensions, space and size of dots, and draws the
@@ -168,38 +172,23 @@ def twoseventygraph(xdim,ydim,space,size):
     position - a variable that holds the turtle's calculated starting position
         when drawing.
     """ 
-    print("ploting...")
-    counter = 0
+    print("ploting...") #tell the user that turtle is currently plotting
+    counter = 0  #create variable counter and assign to a value of 0
     
+    #make the turtle go to the coordinates of xdim*-space/2, ydim*-space/2
+    #this coordinate places the turtle at the perfect position bottom left to create
+    #a centered 270 degree drawing
     t.goto(int(xdim)*-space/2,int(ydim)*-space/2)
-    position = t.pos()
-    t.left(90)
-    for i in image:
-        counter += space
+    position = t.pos() #assign the current position coordinates to variable position
+    t.left(90) #turn the turtle object left by 90 degrees so it faces up
+    for i in image: #iterate through each index (line) of the array image
+        counter += space #add the value of space to the counter
+        #go to the value of counter to the right of the original starting point
         t.goto(position[0]+counter,position[1])
-        for x in i:
-            pointc = colour[x]
-            t.color(pointc)
-            t.dot(size,pointc)
-            t.forward(space)
-def rotate(xdim,ydim,space,size,rotation):
-    turtle.clear()
-    t.penup()
-    t.hideturtle()
-    turtle.tracer(0,0)
-    print(rotation)
-    if rotation == 0:
-        ninetygraph(xdim,ydim,space,size)
-    elif rotation == 90:
-        print("yes")
-        upsidedowngraph(xdim,ydim,space,size)
-    elif rotation == 180:
-        twoseventygraph(xdim,ydim,space,size)
-    elif rotation == 270:
-        uprightgraph(xdim,ydim,space,size)
-    turtle.update()
-
-
+        for x in i: #iterate through each element in the current line
+            pointc = colour[x] #get the corresponding colour of the current symbol
+            t.dot(size,pointc) #create the dot with the desired size and corresponding colour
+            t.forward(space) #move forward (upwards) by the value of space
 
 t = turtle.Turtle() #for easier coding while using functions in turtle
 
