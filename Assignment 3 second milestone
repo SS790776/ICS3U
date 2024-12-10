@@ -51,6 +51,15 @@ import turtle
 
 
 def uprightgraph(xdim,ydim,space,size):
+    """
+    upright graph takes the x and y dimensions, space and size of dots, and draws the
+        image at an upright 0 degree angle.
+    :param xdim: N is an integer, most likely the amount of photos.
+    :return: returns an array of all of the factors of N up to the square root 
+        (half of the factors)
+    facts = the array that will hold the return value of half of the factors
+    index = the floored value of the square root of N
+    """ 
     print("ploting...")
     counter = 0
     
