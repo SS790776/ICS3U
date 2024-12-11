@@ -282,7 +282,7 @@ while u == 1: #while u has a value of 1
         print("not a valid response, please try again") #ask for user input again
         u = 1 #assign u to a value of 1 which continues the loop
 
-o = 1 #create variable o and assigne a value of 1
+o = 1 #create variable o and assign a value of 1
 #ask for user input of the desired spacing and size of the dots
 print("""Please enter the desired spacing and size of the dots.
 *Recommended amount is space = 2 and size = 4""")
