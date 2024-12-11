@@ -50,7 +50,7 @@ Variable dictionary:
 import turtle #import the turtle library
 
 
-def uprightgraph(xdim,ydim,space,size):
+def uprightgraph(xdim,ydim,space,size,image):
     """
     uprightgraph takes the x and y dimensions, space and size of dots, and draws the
         image at an upright 0 degree angle.
@@ -60,6 +60,8 @@ def uprightgraph(xdim,ydim,space,size):
         last line is to stop drawing.
     :param space: space is an integer, holds the desired spacing of the dots when drawing.
     :param size: size is an integer, holds the desired size of the dots when drawing.
+    :param image: an array that holds all of the characters/symbols of the image,
+        each index being a seperate line.
 
     :return: draws the image based off of the xpm file and finishes the function.
     
@@ -85,7 +87,7 @@ def uprightgraph(xdim,ydim,space,size):
             t.dot(size,pointc) #create the dot with the desired size and corresponding colour
             t.forward(space) #move forward (to the right) by the value of space
 
-def upsidedowngraph(xdim,ydim,space,size):
+def upsidedowngraph(xdim,ydim,space,size,image):
     """
     upsidedowngraph takes the x and y dimensions, space and size of dots, and draws the
         image at an upside down 180 degree angle.
@@ -95,6 +97,8 @@ def upsidedowngraph(xdim,ydim,space,size):
         last line is to stop drawing.
     :param space: space is an integer, holds the desired spacing of the dots when drawing.
     :param size: size is an integer, holds the desired size of the dots when drawing.
+    :param image: an array that holds all of the characters/symbols of the image,
+        each index being a seperate line.
 
     :return: draws the image based off of the xpm file and finishes the function.
     
@@ -119,7 +123,7 @@ def upsidedowngraph(xdim,ydim,space,size):
             pointc = colour[x] #get the corresponding colour of the current symbol
             t.dot(size,pointc) #create the dot with the desired size and corresponding colour
             t.backward(space) #move backwards (to the left) by the value of space
-def ninetygraph(xdim,ydim,space,size):
+def ninetygraph(xdim,ydim,space,size,image):
     """
     ninetygraph takes the x and y dimensions, space and size of dots, and draws the
         image at a rotated 90 degree angle.
@@ -129,6 +133,8 @@ def ninetygraph(xdim,ydim,space,size):
         last line is to stop drawing.
     :param space: space is an integer, holds the desired spacing of the dots when drawing.
     :param size: size is an integer, holds the desired size of the dots when drawing.
+    :param image: an array that holds all of the characters/symbols of the image,
+        each index being a seperate line.
 
     :return: draws the image based off of the xpm file and finishes the function.
     
@@ -154,7 +160,7 @@ def ninetygraph(xdim,ydim,space,size):
             pointc = colour[x] #get the corresponding colour of the current symbol
             t.dot(size,pointc) #create the dot with the desired size and corresponding colour
             t.forward(space) #move forward (downwards) by the value of space
-def twoseventygraph(xdim,ydim,space,size):
+def twoseventygraph(xdim,ydim,space,size,image):
     """
     twoseventygraph takes the x and y dimensions, space and size of dots, and draws the
         image at a rotated 270 degree angle.
@@ -164,6 +170,8 @@ def twoseventygraph(xdim,ydim,space,size):
         last line is to stop drawing.
     :param space: space is an integer, holds the desired spacing of the dots when drawing.
     :param size: size is an integer, holds the desired size of the dots when drawing.
+    :param image: an array that holds all of the characters/symbols of the image,
+        each index being a seperate line.
 
     :return: draws the image based off of the xpm file and finishes the function.
     
@@ -307,16 +315,16 @@ while p == 1:#while p has a value of 1
         print("You did not give an integer, please try again \n")
         p = 1 #assign p to a value of 1 which continues the loop
     if rotation == 0: #if the user inputted 0
-        uprightgraph(xdim,ydim,space,size) #call uprightgraph function
+        uprightgraph(xdim,ydim,space,size,image) #call uprightgraph function
 
     elif rotation == 180: #if the user inputted 180
-        upsidedowngraph(xdim,ydim,space,size) #call upsidedowngraph function
+        upsidedowngraph(xdim,ydim,space,size,image) #call upsidedowngraph function
 
     elif rotation == 90: #if the user inputted 90
-        ninetygraph(xdim,ydim,space,size) #call ninetygraph function
+        ninetygraph(xdim,ydim,space,size,image) #call ninetygraph function
 
     elif rotation == 270: #if the user inputted 270
-        twoseventygraph(xdim,ydim,space,size) #call twoseventygraph function
+        twoseventygraph(xdim,ydim,space,size,image) #call twoseventygraph function
 
     else: #if the user gave a response unexpected
         #ask for valid user input again
