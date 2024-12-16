@@ -2,7 +2,7 @@
 Sean S
 11/20/2024
 ICS3U 
-U5 L2
+Programming Assignment 3
 
 Variable dictionary:
     t - turtle.turtle(), makes for coding lines and using the turtle object functions a lot
