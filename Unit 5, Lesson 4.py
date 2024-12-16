@@ -1,15 +1,15 @@
 def printIt(sorted):
     for i in range(40):
-        if i % 10 == 0:
-            print("\n")
+        if i % 10 == 0: #if the remainder of i divided by 10 is 0
+            print("\n") #create newline
             print(words[i], end = " ")
         else:
             print(words[i], end = " ")
 
 def swap(words,i,j):
-    temp = words[i]
-    words[i] = words[j]
-    words[j] = temp
+    temp = words[i] #create temp
+    words[i] = words[j] #swap for j into i
+    words[j] = temp #swap for i into j
     return words
 def sort(words):
     
@@ -21,14 +21,14 @@ def sort(words):
 
 try:
     file = 'words40.dat'
-    fh = open(file, "r")
-    words = []
-    for i in range(40):
-        temp = fh.readline()
-        temp = temp.strip()
-        words.append(temp)
-    sorted = sort(words)
-    printIt(sorted)
+    fh = open(file, "r")#open file
+    words = []#create words array
+    for i in range(40): #iterate through each word
+        temp = fh.readline() #read the next word
+        temp = temp.strip()#strip of newline characters
+        words.append(temp) #append to words
+    sorted = sort(words) #sort it
+    printIt(sorted) #print it formmated
 
     
     fh.close() #close the file as we're done extracting information from it
