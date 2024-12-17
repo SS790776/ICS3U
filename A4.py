@@ -8,18 +8,33 @@ Variable dictionary:
     variable - description
 """
 
-def merge():
+def merge(m,d,y):
     """
-    this function takes x, and does y, and returns z
+    this function takes the month, date, and year, and merges it into one number
     :param variable: description
 
     :return: description
     
     variable - description.
 
-    """ 
-    print("ploting...") #tell the user that turtle is currently plotting
-    counter = 0 #create variable counter and assign to a value of 0
+    """
+    months = {
+        "Jan": "01",
+        "Feb": "02",
+        "Mar": "03",
+        "Apr": "04",
+        "May": "05",
+        "Jun": "06",
+        "Jul": "07",
+        "Aug": "08",
+        "Sep": "09",
+        "Oct": "10",
+        "Nov": "11",
+        "Dec": "12",
+    }
+    num = y + months[m] + d
+    return int(num)
+    
 def search():
     """
     this function takes x, and does y, and returns z
@@ -36,7 +51,7 @@ def quicksort(arr):
     """
     quicksort
     this function takes x, and does y, and returns z
-    :param variable: description
+    :param variable: descriptioxn
 
     :return: description
     
@@ -62,18 +77,24 @@ file = 'wordle.dat'
 
 date = [] #create the array to store the merged dates
 words = [] #create array to store the words
+wtod = { #create wtod dictionary to store words and their corresponding date
+    
+}
 try: #make a try and except in case opening the file goes wrong
     fh = open(file, "r") #open the file
-    
-    for i in range(len(file)):
+    for i in range(1038):
         line = fh.readline() #assign line to the next line of the file
-        words.append(line)
+        line = line.strip() #clear line of "\n" characters
+        #split the line and assign into the month, day, year, and word
+        m, d, y, w = line.split()
+        words.append(w) #add word to words array
+        merged = merge(m,d,y) #merge the month, date,and year into one number
+        date.append(merged) #
+        wtod.update({w:merged})
     print(words)
+    print(date)
+    print(wtod)
     
-
-
-
-
 
     fh.close()#close the file as we're done extracting information from it
 except OSError as err: #if there is an operating system error, catch it
@@ -82,6 +103,8 @@ except OSError as err: #if there is an operating system error, catch it
 except EOFError as err2: #if there is an error opening file error, catch it
     print("EOFError: ", err2) #print out the error
     exit() #stop the program
+
+sortedwords = quicksort(words) #sort the words alphabetically and store into sortedwords
 
 u = 1 #create variable u and assign a value of 1
 while u == 1: #while u has a value of 1
