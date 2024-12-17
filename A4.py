@@ -32,46 +32,45 @@ def search():
     """ 
     print("ploting...") #tell the user that turtle is currently plotting
     counter = 0 #create variable counter and assign to a value of 0
+def quicksort(arr):
+    """
+    quicksort
+    this function takes x, and does y, and returns z
+    :param variable: description
+
+    :return: description
     
+    variable - description.
+
+    """ 
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]
+        left = []
+        for x in arr[1:]:
+            if x < pivot:
+                left.append(x)
+        right = []
+        for i in arr[1:]:
+            if i >= pivot:
+                right.append(i)
+        
+        return quicksort(left) + [pivot] + quicksort(right)
 
 file = 'wordle.dat'
 
-firstinf = [] #create the array for the first line of information
+date = [] #create the array to store the merged dates
+words = [] #create array to store the words
 try: #make a try and except in case opening the file goes wrong
     fh = open(file, "r") #open the file
-    firstinf = fh.readline() #assign firstinf to the first line of the file
-    #split the first line of the file and assign into the x dimension, y dimension, 
-    #and total number of colours.
-    xdim, ydim, colournum = firstinf.split(" ") 
+    
+    for i in range(len(file)):
+        line = fh.readline() #assign line to the next line of the file
+        words.append(line)
+    print(words)
+    
 
-    colour = { #create the colour dictionary to store colours and corresponding symbols
-        
-        }
-    
-    for x in range(int(colournum)): #iterate for every colour
-        line = fh.readline() #read the next line
-        line.strip() #strip the leading/trailing whitespace from the text of the line
-        #split and assign the line into symb (the symbol, c, and rainbow (the colour)
-        symb, c, rainbow = line.split() 
-        
-        if symb == "~": #if the symbol is "~" then assume it is a space " "
-            symb = " "
-            #put the symbol and corresponding colour together into the dictionary
-            colour.update({symb:rainbow}) 
-
-        else: #if the symbol is not "~"
-            #put the symbol and corresponding colour together into the dictionary
-            colour.update({symb:rainbow})
-    
-    
-    
-    image = [] #create array that will store the symbols/characters of the image
-
-    for i in range(int(ydim)): #iterate through each line
-        line = fh.readline()#read the next line
-        #get rid of the "\n" endline character from what we're extracting
-        line = line.replace('\n', '') 
-        image.append(line) #add the extracted line into the image array
 
 
 
@@ -86,17 +85,14 @@ except EOFError as err2: #if there is an error opening file error, catch it
 
 u = 1 #create variable u and assign a value of 1
 while u == 1: #while u has a value of 1
-    #ask for user input of what type of background they'd like
-    ld = input("Would you like a darker or lighter background? L/D or W for no background: ") 
+    #ask user if they want tos earch for date or words
+    dw = input("do you want to search for date or words? (D/W): ") 
     
-    if ld == "L" or ld == "l": #if the user inputted a variation of "L"
-        turtle.bgcolor("gray70") #make the background a lighter gray
-        u = 0 #assign u to a value of 0 which exits the while loop
-    elif ld == "D" or ld == "d": #if the user inputted a variation of "D"
-        turtle.bgcolor("gray40") #make the background a darker gray
+    if ld == "D" or ld == "d": #if the user inputted a variation of "L"
+        do = "LOOK FOR DATES IG"
         u = 0 #assign u to a value of 0 which exits the while loop
     elif ld == "W" or ld == "w": #if the user inputted a variation of "W"
-        turtle.bgcolor("white") #make the background white
+        do = "LOOK FOR WORDS IG"
         u = 0 #assign u to a value of 0 which exits the while loop
     else: #if the user input is a response that was not expected
         print("not a valid response, please try again") #ask for user input again
