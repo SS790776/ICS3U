@@ -142,13 +142,8 @@ except EOFError as err2: #if there is an error opening file error, catch it
     print("EOFError: ", err2) #print out the error
     exit() #stop the program
 
- #sort the words alphabetically and store into sortedwords,  
- #while swapping date elements correspondingly
-sortedwords,sorteddates = exchange_sort(words,date)
 
- #sort the dates chronologically and store into datesorteddates,  
- #while swapping words elements correspondingly
-datesorteddates, datesortedwords = exchange_sort(date,words)
+
 
 u = 1 #create variable u and assign a value of 1
 while u == 1: #while u has a value of 1
@@ -156,6 +151,11 @@ while u == 1: #while u has a value of 1
     dw = input("do you want to search for date or words? (D/W): ") 
     
     if dw == "D" or dw == "d": #if the user inputted a variation of "D"
+                
+        #sort the dates chronologically and store into datesorteddates,  
+        #while swapping words elements correspondingly
+        datesorteddates, datesortedwords = exchange_sort(date,words)
+
         print("What date would you like to search?") #Ask for desired date
         gety = input("Please enter the year: ") #Ask for year
         #ask for month
@@ -177,17 +177,19 @@ while u == 1: #while u has a value of 1
             exit()
         
         print(f"The word entered on {gotd} was {datesortedwords[index]}.") #output the corresponding word
-        print(index)
-        print(words[index])
+        
         u = 0 #assign u to a value of 0 which exits the while loop
     elif dw == "W" or dw == "w": #if the user inputted a variation of "W"
+        #sort the words alphabetically and store into sortedwords,  
+        #while swapping date elements correspondingly
+        sortedwords,sorteddates = exchange_sort(words,date)
         targword = input("Please enter the desired word: ") #ask for desired word
         targword = targword.upper() #make it uppercase
         #get index of target word
         index = search(sortedwords,0,len(sortedwords),targword) 
         if index == -1: #if the word doesn't exsist
             #say that it doesn't exsist
-            print("The word {targword} was not found in the database.")
+            print(f"The word {targword} was not found in the database.")
             exit() #exit the program
         print(f"The word {targword} was the solution on {date[index]}.") #ouput the corresponding date
         u = 0 #assign u to a value of 0 which exits the while loop
