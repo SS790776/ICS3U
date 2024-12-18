@@ -32,10 +32,11 @@ def merge(m,d,y):
         "Nov": "11",
         "Dec": "12",
     }
+    m = m.capitalize()
     num = y + months[m] + d
     return int(num)
     
-def search():
+def search(arr, low, high, target):
     """
     this function takes x, and does y, and returns z
     :param variable: description
@@ -45,41 +46,60 @@ def search():
     variable - description.
 
     """ 
-    print("ploting...") #tell the user that turtle is currently plotting
-    counter = 0 #create variable counter and assign to a value of 0
-def quicksort(arr):
+    if high >= low:
+    
+        mid = (high + low) // 2
+
+        if arr[mid] == target:
+            return mid
+    
+        elif arr[mid] > target:
+            return search(arr, low, mid - 1, target)
+    
+
+        else:
+            return search(arr, mid + 1, high, target)
+    
+    else:
+        return -1
+
+
+
+def exchange_sort(arr,date):
     """
-    quicksort
     this function takes x, and does y, and returns z
-    :param variable: descriptioxn
+    :param variable: description
 
     :return: description
     
     variable - description.
 
     """ 
-    if len(arr) <= 1:
-        return arr
-    else:
-        pivot = arr[0]
-        left = []
-        for x in arr[1:]:
-            if x < pivot:
-                left.append(x)
-        right = []
-        for i in arr[1:]:
-            if i >= pivot:
-                right.append(i)
-        
-        return quicksort(left) + [pivot] + quicksort(right)
+    size = len(arr)
+
+    for i in range(size - 1):
+
+        for j in range(i + 1, size):
+
+            if arr[i] > arr[j]:
+                temp = arr[i]
+                arr[i] = arr[j]
+                arr[j] = temp
+                temp2 = date[i]
+                date[i] = date[j]
+                date[j] = temp2
+    return arr,date
+
+
+
+
+print("You have entered the wordle archives...")
 
 file = 'wordle.dat'
 
 date = [] #create the array to store the merged dates
 words = [] #create array to store the words
-wtod = { #create wtod dictionary to store words and their corresponding date
-    
-}
+
 try: #make a try and except in case opening the file goes wrong
     fh = open(file, "r") #open the file
     for i in range(1038):
@@ -90,12 +110,7 @@ try: #make a try and except in case opening the file goes wrong
         words.append(w) #add word to words array
         merged = merge(m,d,y) #merge the month, date,and year into one number
         date.append(merged) #
-        wtod.update({w:merged})
-    print(words)
-    print(date)
-    print(wtod)
     
-
     fh.close()#close the file as we're done extracting information from it
 except OSError as err: #if there is an operating system error, catch it
     print("OSError: ", err) #print out the error
@@ -104,62 +119,40 @@ except EOFError as err2: #if there is an error opening file error, catch it
     print("EOFError: ", err2) #print out the error
     exit() #stop the program
 
-sortedwords = quicksort(words) #sort the words alphabetically and store into sortedwords
+sortedwords,sorteddates = exchange_sort(words,date) #sort the words alphabetically and store into sortedwords
 
 u = 1 #create variable u and assign a value of 1
 while u == 1: #while u has a value of 1
-    #ask user if they want tos earch for date or words
+    #ask user if they want to search for date or words
     dw = input("do you want to search for date or words? (D/W): ") 
     
-    if ld == "D" or ld == "d": #if the user inputted a variation of "L"
-        do = "LOOK FOR DATES IG"
+    if dw == "D" or dw == "d": #if the user inputted a variation of "L"
+        print("What date would you like to search?")
+        gety = input("Please enter the year: ")
+        getm = input("Please enter the month using the first three letters (Eg.Jan): ")
+        getd = input("Please enter the day: ")
+        gotd = merge(getm,getd,gety)
+        gotd = int(gotd)
+        if gotd > 20240421:
+            print("Our records only go until 20240421, Sorry.")
+            exit()
+        elif gotd < 20210619:
+            print("Our earliest records are 20210619, Sorry.")
+            exit()
+        index = search(sorteddates,0,len(sorteddates),gotd)
+
+        
+        print(f"The word entered on {gotd} was {words[index]}.")
         u = 0 #assign u to a value of 0 which exits the while loop
-    elif ld == "W" or ld == "w": #if the user inputted a variation of "W"
-        do = "LOOK FOR WORDS IG"
+    elif dw == "W" or dw == "w": #if the user inputted a variation of "W"
+        targword = input("Please enter the desired word: ")
+        targword = targword.upper()
+        index = search(sortedwords,0,len(sortedwords),targword)
+        if index == -1:
+            print("The word {targword} was not found in the database.")
+            exit()
+        print(f"The word {targword} was the solution on {date[index]}.")
         u = 0 #assign u to a value of 0 which exits the while loop
     else: #if the user input is a response that was not expected
         print("not a valid response, please try again") #ask for user input again
         u = 1 #assign u to a value of 1 which continues the loop
-
-o = 1 #create variable o and assign a value of 1
-#ask for user input of the desired spacing and size of the dots
-print("""Please enter the desired spacing and size of the dots.
-*Recommended amount is space = 2 and size = 4""")
-
-while o == 1:#while o has a value of 1
-    try: #make a try and except in case the user doesn't input an integer
-        space = int(input("Space: ")) #ask and take in user input for spacing
-        size = int(input("Size: ")) #ask and take in user input for size
-        o = 0 #assign o to a value of 0 which exits the while loop
-    except ValueError: #catch the value error expection when converting to int
-        #ask again for a valid user input
-        print("You did not give a valid integer, please try again \n")
-        o = 1 #assign o to a value of 1 which continues the loop
-        
-p = 1 #create variable p and assigne a value of 1
-while p == 1:#while p has a value of 1
-    try:#make a try and except in case the user doesn't input an integer
-        #ask for user input for the desired rotation of the image
-        rotation = int(input("Please enter the desired rotation (0, 90, 180, 270): "))
-        p = 0 #assign p to a value of 0 which exits the while loop
-    except ValueError: #catch the value error expection when converting to int
-        print("You did not give an integer, please try again \n")
-        p = 1 #assign p to a value of 1 which continues the loop
-    if rotation == 0: #if the user inputted 0
-        uprightgraph(xdim,ydim,space,size,image) #call uprightgraph function
-
-    elif rotation == 180: #if the user inputted 180
-        upsidedowngraph(xdim,ydim,space,size,image) #call upsidedowngraph function
-
-    elif rotation == 90: #if the user inputted 90
-        ninetygraph(xdim,ydim,space,size,image) #call ninetygraph function
-
-    elif rotation == 270: #if the user inputted 270
-        twoseventygraph(xdim,ydim,space,size,image) #call twoseventygraph function
-
-    else: #if the user gave a response unexpected
-        #ask for valid user input again
-        print("You did not give a valid rotation number, please try again")
-        p = 1 #assign p to a value of 1 which continues the loop
-    
-print("Done! Please check to see if the Turtle graphics window has opened.")
