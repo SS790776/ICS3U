@@ -40,7 +40,7 @@ def merge(m,d,y):
     :param y: The year as a string (eg. "2024").
     :return: An integer representing the merged date in YYYYMMDD format.
     """
-    months = {
+    months = { #A dictionary for easier pulling of string to int
         "Jan": "01",
         "Feb": "02",
         "Mar": "03",
@@ -54,9 +54,9 @@ def merge(m,d,y):
         "Nov": "11",
         "Dec": "12",
     }
-    m = m.capitalize()
-    num = y + months[m] + d
-    return int(num)
+    m = m.capitalize() #capitalize for consistency
+    num = y + months[m] + d #merge the variables together
+    return int(num) #return the YYYYMMDD as an integer
     
 def search(arr, low, high, target):
     """
@@ -68,21 +68,23 @@ def search(arr, low, high, target):
     :param target: The value to search for in the array.
     :return: The index of the found target.
     """
-    if high >= low:
-    
-        mid = (high + low) // 2
+    if high >= low: #if the highest index is greater than or equal to the lowest
+        mid = (high + low) // 2 #get the mean (average)  and assign to mid
 
-        if arr[mid] == target:
+        if arr[mid] == target: #if mid is the target, the return it
             return mid
     
-        elif arr[mid] > target:
+        elif arr[mid] > target: #if mid is greater than the target
+            #recursion, put it back into the search function but the high is now mid-1
             return search(arr, low, mid - 1, target)
     
 
-        else:
+        else:#if mid is less than the target
+            #recursion, put it back into the search function but the low is now mid+1
             return search(arr, mid + 1, high, target)
     
     else:
+        #if we can't find the target, return -1
         return -1
 
 
@@ -96,20 +98,20 @@ def exchange_sort(arr,date):
     :param date: The date array that is swapped correspondingly
     :return: The sorted word array and date.
     """
-    size = len(arr)
+    size = len(arr) #size is equal to the length of the array
 
-    for i in range(size - 1):
+    for i in range(size - 1): #iterate through size -1
 
-        for j in range(i + 1, size):
+        for j in range(i + 1, size): #iterate from i+1 to size
 
-            if arr[i] > arr[j]:
-                temp = arr[i]
-                arr[i] = arr[j]
-                arr[j] = temp
-                temp2 = date[i]
-                date[i] = date[j]
-                date[j] = temp2
-    return arr,date
+            if arr[i] > arr[j]: #if arr[i] is greater than arr[j]
+                temp = arr[i] #make temp as arr[i]
+                arr[i] = arr[j] #swap arr[j] into arr[i]
+                arr[j] = temp #swap temp(arr[i]) into arr[j]
+                temp2 = date[i] #make temp2 as date[i]
+                date[i] = date[j] #swap date[j] into date[i]
+                date[j] = temp2 #swap temp2 (date[i]) into date[j]
+    return arr,date #return sorted arr, and corresponding date.
 
 
 
@@ -144,6 +146,10 @@ except EOFError as err2: #if there is an error opening file error, catch it
  #while swapping date elements correspondingly
 sortedwords,sorteddates = exchange_sort(words,date)
 
+ #sort the dates chronologically and store into datesorteddates,  
+ #while swapping words elements correspondingly
+datesorteddates, datesortedwords = exchange_sort(date,words)
+
 u = 1 #create variable u and assign a value of 1
 while u == 1: #while u has a value of 1
     #ask user if they want to search for date or words
@@ -164,10 +170,15 @@ while u == 1: #while u has a value of 1
             print("Our earliest records are 20210619, Sorry.") #say that we don't have it
             exit() #exit the program
         #get the index of the target date
-        index = search(date,0,len(date),gotd) #find the index of the date
-
+        index = search(datesorteddates,0,len(datesorteddates),gotd) #find the index of the date
+        if index == -1:
+            print("date not found")
+            print(date)
+            exit()
         
-        print(f"The word entered on {gotd} was {words[index]}.") #output the corresponding word
+        print(f"The word entered on {gotd} was {datesortedwords[index]}.") #output the corresponding word
+        print(index)
+        print(words[index])
         u = 0 #assign u to a value of 0 which exits the while loop
     elif dw == "W" or dw == "w": #if the user inputted a variation of "W"
         targword = input("Please enter the desired word: ") #ask for desired word
