@@ -13,11 +13,11 @@ def swap(words,i,j):
     return words
 def sort(words):
     
-    for i in range(1,len(words)):
-        for j in range(len(words)-1):
-            if words[i] < words[j]:
-                words = swap(words,i,j)
-    return words
+    for i in range(1,len(words)): #go through each word
+        for j in range(len(words)-1): #for all other words
+            if words[i] < words[j]: #if the current word is less than the other alphabetically
+                words = swap(words,i,j) #swap the two
+    return words 
 
 try:
     file = 'words40.dat'
@@ -37,3 +37,4 @@ except OSError as err: #if there is an operating system error, catch it
     exit() #stop the program
 except EOFError as err2: #if there is an error opening file error, catch it
     print("EOFError: ", err2) #print 
+
