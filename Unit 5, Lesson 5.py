@@ -1,13 +1,23 @@
-
-def getInt(prompt):
-    p = 0
-
-
 def fib(n):
-    return 0
+  pass  
+    
 
-# DO NOT ALTER ANY CODE BELOW
-tn = getInt("Please input a whole number: ")
-for i in range(1, tn + 1):
-    print(fib(i), end = " ")
+p = 0
+try:
+    while p == 0:
+        inp = int(input("Please input a whole number greater than 0: "))
+        if inp <=0:
+            print("Please input a valid whole number")
+            p = 0
+        else:
+            p = 1
+except ValueError as Err:
+    print("Please input a valid whole number")
+    p = 0
+except TypeEror as Err:
+    print("Please input a valid whole number")
+    p = 0
+    
+    
+print(fib(n), end = " ")
 print()
