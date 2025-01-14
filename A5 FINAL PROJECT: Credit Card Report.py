@@ -81,7 +81,8 @@ ccnumber = [] #create the array to store the credit card number
 
 try: #make a try and except in case opening the file goes wrong
     fh = open(file, "r") #open the file
-    for i in range(201):
+    formatline = fh.readline()
+    for i in range(200):
         line = fh.readline() #assign line to the next line of the file
         line = line.strip() #clear line of "\n" characters
         #split the line and assign into the name, surname, cctype, ccnumber, exp-mo,and exp-yr
