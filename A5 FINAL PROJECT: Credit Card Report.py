@@ -71,10 +71,7 @@ def merge_sort(arr,date):
 
 
 
-
-print("You have entered the wordle archives...")
-
-file = 'wordle.dat'
+file = 'data.dat'
 
 expdate = [] #create the array to store the merged expiry dates in YYYYMM format
 name = [] #create array to store the Name and Surname
@@ -102,4 +99,6 @@ except OSError as err: #if there is an operating system error, catch it
 except EOFError as err2: #if there is an error opening file error, catch it
     print("EOFError: ", err2) #print out the error
     exit() #stop the program
+
+print(expdate,name,cctype,ccnumber)
 
