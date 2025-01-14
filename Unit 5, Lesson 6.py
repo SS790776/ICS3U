@@ -1,13 +1,12 @@
 def triangle (ch, num):
+    if (num == 1): # base case
+        print(ch)
+        return
 
-  if (num>=7): # base case
-    print(ch)
+    else: # recursive step
+        print(ch*num)
+        triangle(ch, num - 1)
 
-    return
-  else: # recursive step
-    triangle(ch, num + 1)
-  print(ch*num)
-  return
 
 
 c = "#"
