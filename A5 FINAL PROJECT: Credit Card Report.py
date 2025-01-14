@@ -43,37 +43,6 @@ def merge(m,y):
         m = (f"0{m}") #add a zero before the digit
     num = y + m  #merge the variables together
     return int(num) #return the YYYYMMDD as an integer
-    
-def search(arr, low, high, target):
-    """
-    This function uses binary search to find a target value in a sorted array.
-
-    :param arr: The sorted array to search, could be word or date array
-    :param low: The starting index for the search.
-    :param high: The ending index for the search.
-    :param target: The value to search for in the array.
-    :return: The index of the found target.
-    """
-    if high >= low: #if the highest index is greater than or equal to the lowest
-        mid = (high + low) // 2 #get the mean (average)  and assign to mid
-
-        if arr[mid] == target: #if mid is the target, the return it
-            return mid
-    
-        elif arr[mid] > target: #if mid is greater than the target
-            #recursion, put it back into the search function but the high is now mid-1
-            return search(arr, low, mid - 1, target)
-    
-
-        else:#if mid is less than the target
-            #recursion, put it back into the search function but the low is now mid+1
-            return search(arr, mid + 1, high, target)
-    
-    else:
-        #if we can't find the target, return -1
-        return -1
-
-
 
 def merge_sort(arr,date):
     """
@@ -134,57 +103,3 @@ except EOFError as err2: #if there is an error opening file error, catch it
     print("EOFError: ", err2) #print out the error
     exit() #stop the program
 
-
-
-
-u = 1 #create variable u and assign a value of 1
-while u == 1: #while u has a value of 1
-    #ask user if they want to search for date or words
-    dw = input("do you want to search for date or words? (D/W): ") 
-    
-    if dw == "D" or dw == "d": #if the user inputted a variation of "D"
-                
-        #sort the dates chronologically and store into datesorteddates,  
-        #while swapping words elements correspondingly
-        datesorteddates, datesortedwords = exchange_sort(date,words)
-
-        print("What date would you like to search?") #Ask for desired date
-        gety = input("Please enter the year: ") #Ask for year
-        #ask for month
-        getm = input("Please enter the month using the first three letters (Eg.Jan): ")
-        getd = input("Please enter the day: ") #ask for day
-        gotd = merge(getm,getd,gety) #merge into YYYYMMDD format
-        gotd = int(gotd) #turn into integer
-        if gotd > 20240421: #if the date is greater than the latest records
-            print("Our records only go until 20240421, Sorry.") #say that we don't have it
-            exit() #exit the program
-        elif gotd < 20210619: #if the date is less than the earliest records
-            print("Our earliest records are 20210619, Sorry.") #say that we don't have it
-            exit() #exit the program
-        #get the index of the target date
-        index = search(datesorteddates,0,len(datesorteddates),gotd) #find the index of the date
-        if index == -1:
-            print("date not found")
-            print(date)
-            exit()
-        
-        print(f"The word entered on {gotd} was {datesortedwords[index]}.") #output the corresponding word
-        
-        u = 0 #assign u to a value of 0 which exits the while loop
-    elif dw == "W" or dw == "w": #if the user inputted a variation of "W"
-        #sort the words alphabetically and store into sortedwords,  
-        #while swapping date elements correspondingly
-        sortedwords,sorteddates = exchange_sort(words,date)
-        targword = input("Please enter the desired word: ") #ask for desired word
-        targword = targword.upper() #make it uppercase
-        #get index of target word
-        index = search(sortedwords,0,len(sortedwords),targword) 
-        if index == -1: #if the word doesn't exsist
-            #say that it doesn't exsist
-            print(f"The word {targword} was not found in the database.")
-            exit() #exit the program
-        print(f"The word {targword} was the solution on {date[index]}.") #ouput the corresponding date
-        u = 0 #assign u to a value of 0 which exits the while loop
-    else: #if the user input is a response that was not expected
-        print("not a valid response, please try again") #ask for user input again
-        u = 1 #assign u to a value of 1 which continues the loop
