@@ -77,7 +77,7 @@ expdate = [] #create the array to store the merged expiry dates in YYYYMM format
 name = [] #create array to store the Name and Surname
 cctype = [] #create the array to store the credit card type
 ccnumber = [] #create the array to store the credit card number
-
+status = [] #create the array to store the expiry status
 
 try: #make a try and except in case opening the file goes wrong
     fh = open(file, "r") #open the file
@@ -102,4 +102,9 @@ except EOFError as err2: #if there is an error opening file error, catch it
     exit() #stop the program
 
 print(expdate,name,cctype,ccnumber)
+
+
+create = write(statussheet.txt,"w")
+    
+create.close()
 
