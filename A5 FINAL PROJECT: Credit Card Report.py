@@ -31,7 +31,7 @@ Variable dictionary:
     u - A control variable for the program's main loop.
 """
 
-def merge(m,y):
+def mergedate(m,y):
     """
     This function merges the month and year into one number in YYYYMM format.
 
@@ -44,32 +44,31 @@ def merge(m,y):
     num = y + m  #merge the variables together
     return int(num) #return the YYYYMMDD as an integer
 
-def merge_sort(arr,date):
+def merge():
+    pass
+
+def merge_sort(expdate,name,cctype,ccnumber):
     """
     This function sorts an array in ascending order using the merge sort algorithm
     and swaps elements in the date array correspondingly.
 
-    :param arr: The word array to sort.
-    :param date: The date array that is swapped correspondingly
-    :return: The sorted word array and date.
-    CURRENTLY EXCHANGE SORT, NEED TO CHANGE INTO MERGE SORT
+    :param expdate: The expiry date array to sort.
+    :param name: The name array that is swapped correspondingly
+    :param cctype: The credit card type array that is swapped correspondingly
+    :param ccnumber: The credit card number array that is swapped correspondingly 
+    :return: The sorted expdate, name, cctype, and ccnumber arrays.
+
     """
-    size = len(arr) #size is equal to the length of the array
-
-    for i in range(size - 1): #iterate through size -1
-
-        for j in range(i + 1, size): #iterate from i+1 to size
-
-            if arr[i] > arr[j]: #if arr[i] is greater than arr[j]
-                temp = arr[i] #make temp as arr[i]
-                arr[i] = arr[j] #swap arr[j] into arr[i]
-                arr[j] = temp #swap temp(arr[i]) into arr[j]
-                temp2 = date[i] #make temp2 as date[i]
-                date[i] = date[j] #swap date[j] into date[i]
-                date[j] = temp2 #swap temp2 (date[i]) into date[j]
-    return arr,date #return sorted arr, and corresponding date.
-
-
+    
+def status_check(expdate,status):
+    """
+    This function will go through each exp date in the array and check whether or not
+    the date is expired, close to expiry, or not expired.
+    
+    :param expdate: The expiry date array
+    :param status: The array containing the status data
+    
+    """
 
 file = 'data.dat'
 
@@ -88,7 +87,7 @@ try: #make a try and except in case opening the file goes wrong
         #split the line and assign into the name, surname, cctype, ccnumber, exp-mo,and exp-yr
         n, sn, ct, cn, em, ey = line.split(",")
         name.append(f"{n} {sn}") #add name and surname to name array, seperated by a space
-        merged = merge(em,ey) #merge the month and year into one number YYYYMM format
+        merged = mergedate(em,ey) #merge the month and year into one number YYYYMM format
         expdate.append(merged) #add the merged date into the date array
         cctype.append(ct) #add the credit card type into the cctype array
         ccnumber.append(cn) #add the credit card number into the ccnumber array
@@ -104,7 +103,6 @@ except EOFError as err2: #if there is an error opening file error, catch it
 print(expdate,name,cctype,ccnumber)
 
 
-create = write(statussheet.txt,"w")
+#create = write(statussheet.txt,"w")
     
-create.close()
-
+#create.close()
