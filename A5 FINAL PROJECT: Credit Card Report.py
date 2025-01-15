@@ -57,7 +57,6 @@ def merge_sort(expdate,name,cctype,ccnumber):
     :param cctype: The credit card type array that is swapped correspondingly
     :param ccnumber: The credit card number array that is swapped correspondingly 
     :return: The sorted expdate, name, cctype, and ccnumber arrays.
-
     """
     
 def status_check(expdate,status):
