@@ -141,7 +141,13 @@ def status_check(expdate,status):
     :param status: The array containing the status data
     
     """
-
+    for i in expdate:
+        if i <202501:
+            status.append("EXPIRED")
+        elif i =>202501 and i <202502:
+            status.append("RENEW IMMEDIATELY")
+        else:
+            status.append("NOT EXPIRED")
 file = 'data.dat'
 
 expdate = [] #create the array to store the merged expiry dates in YYYYMM format
@@ -177,6 +183,6 @@ print(expdate,name,cctype,ccnumber)
 merge_sort(expdate,name,cctype,ccnumber,0,len(expdate)-1)
 print(expdate,name,cctype,ccnumber)
 
-#create = write(statussheet.txt,"w")
-    
+#create = open(statussheet.txt,"w")
+#    create.write("nihao")
 #create.close()
