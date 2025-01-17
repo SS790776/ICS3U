@@ -44,7 +44,7 @@ def mergedate(m,y):
     num = y + m  #merge the variables together
     return int(num) #return the YYYYMMDD as an integer
 
-def merge(arr, left, mid, right):
+def merge(arr, arr2, arr3, arr4, left, mid, right):
     """
     This function merges
     :param arr: 
@@ -55,14 +55,21 @@ def merge(arr, left, mid, right):
     n2 = right - mid
 
     # Create temp arrays
-    L = [0] * n1
-    R = [0] * n2
+    L,L2,L3,L4 = [0] * n1, [0] * n1, [0] * n1, [0] * n1
+    R,R2,R3,R4 = [0] * n2, [0] * n2, [0] * n2, [0] * n2
 
     # Copy data to temp arrays L[] and R[]
     for i in range(n1):
         L[i] = arr[left + i]
+        L2[i] = arr2[left + i]
+        L3[i] = arr3[left + i]
+        L4[i] = arr4[left + i]
+    
     for j in range(n2):
         R[j] = arr[mid + 1 + j]
+        R2[j] = arr2[mid + 1 + j]
+        R3[j] = arr3[mid + 1 + j]
+        R4[j] = arr4[mid + 1 + j]
 
     i = 0  # Initial index of first subarray
     j = 0  # Initial index of second subarray
@@ -73,9 +80,15 @@ def merge(arr, left, mid, right):
     while i < n1 and j < n2:
         if L[i] <= R[j]:
             arr[k] = L[i]
+            arr2[k] = L2[i]
+            arr3[k] = L3[i]
+            arr4[k] = L4[i]
             i += 1
         else:
             arr[k] = R[j]
+            arr2[k] = R2[j]
+            arr3[k] = R3[j]
+            arr4[k] = R4[j]
             j += 1
         k += 1
 
@@ -83,6 +96,9 @@ def merge(arr, left, mid, right):
     # if there are any
     while i < n1:
         arr[k] = L[i]
+        arr2[k] = L2[i]
+        arr3[k] = L3[i]
+        arr4[k] = L4[i]
         i += 1
         k += 1
 
@@ -90,10 +106,13 @@ def merge(arr, left, mid, right):
     # if there are any
     while j < n2:
         arr[k] = R[j]
+        arr2[k] = R2[j]
+        arr3[k] = R3[j]
+        arr4[k] = R4[j]
         j += 1
         k += 1
 
-def merge_sort(expdate,name,cctype,ccnumber):
+def merge_sort(arr,arr2,arr3,arr4,left,right):
     """
     This function sorts an array in ascending order using the merge sort algorithm
     and swaps elements in the date array correspondingly.
@@ -107,9 +126,11 @@ def merge_sort(expdate,name,cctype,ccnumber):
     if left < right:
         mid = (left + right) // 2
 
-        merge_sort(arr, left, mid)
-        merge_sort(arr, mid + 1, right)
-        merge(arr, left, mid, right)
+        merge_sort(arr, arr2, arr3, arr4, left, mid)
+        
+        merge_sort(arr, arr2, arr3, arr4, mid + 1, right)
+        
+        merge(arr, arr2, arr3, arr4, left, mid, right)
     
 def status_check(expdate,status):
     """
@@ -153,6 +174,8 @@ except EOFError as err2: #if there is an error opening file error, catch it
 
 print(expdate,name,cctype,ccnumber)
 
+merge_sort(expdate,name,cctype,ccnumber,0,len(expdate)-1)
+print(expdate,name,cctype,ccnumber)
 
 #create = write(statussheet.txt,"w")
     
