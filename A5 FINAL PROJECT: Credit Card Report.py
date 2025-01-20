@@ -144,10 +144,11 @@ def status_check(expdate,status):
     for i in expdate:
         if i <202501:
             status.append("EXPIRED")
-        elif i =>202501 and i <202502:
+        elif i ==202501:
             status.append("RENEW IMMEDIATELY")
         else:
             status.append("NOT EXPIRED")
+
 file = 'data.dat'
 
 expdate = [] #create the array to store the merged expiry dates in YYYYMM format
@@ -164,7 +165,7 @@ try: #make a try and except in case opening the file goes wrong
         line = line.strip() #clear line of "\n" characters
         #split the line and assign into the name, surname, cctype, ccnumber, exp-mo,and exp-yr
         n, sn, ct, cn, em, ey = line.split(",")
-        name.append(f"{n} {sn}") #add name and surname to name array, seperated by a space
+        name.append(f"{n} {sn}") #add name and surname to name array, seperated by a comma
         merged = mergedate(em,ey) #merge the month and year into one number YYYYMM format
         expdate.append(merged) #add the merged date into the date array
         cctype.append(ct) #add the credit card type into the cctype array
@@ -178,11 +179,19 @@ except EOFError as err2: #if there is an error opening file error, catch it
     print("EOFError: ", err2) #print out the error
     exit() #stop the program
 
-print(expdate,name,cctype,ccnumber)
-
 merge_sort(expdate,name,cctype,ccnumber,0,len(expdate)-1)
-print(expdate,name,cctype,ccnumber)
 
-create = open(statussheet.txt,"w")
-    create.write("nihao")
-create.close()
+status_check(expdate,status)
+
+try:
+    create = open('statussheet.txt',"w")
+    for i in range(len(expdate)):
+        line = ("%-38s %-13s %s %s %s" %(name[i]+":",cctype[i],ccnumber[i],expdate[i],status[i])) + "\n"
+        create.write(line)
+    create.close()
+except IOError as err:
+    print("IOError: ", err)
+except OSError as err2:
+    print("OSError: ", err2)
+except PermissionError as err3:
+    print("PermissionError: ", err3)
