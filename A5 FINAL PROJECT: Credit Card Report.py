@@ -186,8 +186,11 @@ status_check(expdate,status)
 try:
     create = open('statussheet.txt',"w")
     for i in range(len(expdate)):
-        line = ("%-38s %-13s %s %s %s" %(name[i]+":",cctype[i],ccnumber[i],expdate[i],status[i])) + "\n"
-        create.write(line)
+        if expdate[i] == "NOT EXPIRED":
+            pass
+        else:
+            line = ("%-38s %-13s %s %s %s" %(name[i]+":",cctype[i],ccnumber[i],expdate[i],status[i])) + "\n"
+            create.write(line)
     create.close()
 except IOError as err:
     print("IOError: ", err)
