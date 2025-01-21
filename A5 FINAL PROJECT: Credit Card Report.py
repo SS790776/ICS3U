@@ -46,19 +46,19 @@ def mergedate(m,y):
 
 def merge(arr, arr2, arr3, arr4, left, mid, right):
     """
-    This function recursively merges arrays, as a part of the mergesort algorithm.
+    This function merges arrays, as a part of the mergesort algorithm.
         This function is optimized to swap and merge multiple arrays following the 
         same order of the exp date array being sorted.
-    :param arr: 
-    :param arr2:
-    :param arr3: 
-    :param arr4: 
-    :param left: 
-    :param mid:
-    :param right:
+    :param arr: The primary array used for sorting (expdate).
+    :param arr2: Second array that follows the corresponding sorting of arr (name).
+    :param arr3: Third array that follows the corresponding sorting of arr (cctype).
+    :param arr4: Fourth array that follows the corresponding sorting of arr (ccnumber).
+    :param left: Leftmost index of the subarray to be merged.
+    :param mid: Middle index, dividing the subarrays.
+    :param right: Rightmost index of the subarray to be merged.
     """
-    n1 = mid - left + 1
-    n2 = right - mid
+    n1 = mid - left + 1 # Length of the first subarray
+    n2 = right - mid # Length of the second subarray
 
     # Create temp arrays
     L,L2,L3,L4 = [0] * n1, [0] * n1, [0] * n1, [0] * n1
@@ -66,16 +66,16 @@ def merge(arr, arr2, arr3, arr4, left, mid, right):
 
     # Copy data to temp arrays L[] and R[]
     for i in range(n1):
-        L[i] = arr[left + i]
-        L2[i] = arr2[left + i]
-        L3[i] = arr3[left + i]
-        L4[i] = arr4[left + i]
+        L[i] = arr[left + i] # Primary array left half
+        L2[i] = arr2[left + i] # Array 2 left half (replicate)
+        L3[i] = arr3[left + i] # Array 3 left half (replicate)
+        L4[i] = arr4[left + i] # Array 4 left half (replicate)
     
     for j in range(n2):
-        R[j] = arr[mid + 1 + j]
-        R2[j] = arr2[mid + 1 + j]
-        R3[j] = arr3[mid + 1 + j]
-        R4[j] = arr4[mid + 1 + j]
+        R[j] = arr[mid + 1 + j] # Primary array right half
+        R2[j] = arr2[mid + 1 + j] # Array 2 right half (replicate)
+        R3[j] = arr3[mid + 1 + j] # Array 3 right half (replicate)
+        R4[j] = arr4[mid + 1 + j] # Array 4 right half (replicate)
 
     i = 0  # Initial index of first subarray
     j = 0  # Initial index of second subarray
@@ -84,17 +84,17 @@ def merge(arr, arr2, arr3, arr4, left, mid, right):
     # Merge the temp arrays back
     # into arr[left..right]
     while i < n1 and j < n2:
-        if L[i] <= R[j]:
+        if L[i] <= R[j]: #compare the elements and merge in sorted order
             arr[k] = L[i]
-            arr2[k] = L2[i]
-            arr3[k] = L3[i]
-            arr4[k] = L4[i]
+            arr2[k] = L2[i] #replicate
+            arr3[k] = L3[i] #replicate
+            arr4[k] = L4[i] #replicate
             i += 1
         else:
             arr[k] = R[j]
-            arr2[k] = R2[j]
-            arr3[k] = R3[j]
-            arr4[k] = R4[j]
+            arr2[k] = R2[j] #replicate
+            arr3[k] = R3[j] #replicate
+            arr4[k] = R4[j] #replicate
             j += 1
         k += 1
 
@@ -102,9 +102,9 @@ def merge(arr, arr2, arr3, arr4, left, mid, right):
     # if there are any
     while i < n1:
         arr[k] = L[i]
-        arr2[k] = L2[i]
-        arr3[k] = L3[i]
-        arr4[k] = L4[i]
+        arr2[k] = L2[i] #replicate
+        arr3[k] = L3[i] #replicate
+        arr4[k] = L4[i] #replicate
         i += 1
         k += 1
 
@@ -112,9 +112,9 @@ def merge(arr, arr2, arr3, arr4, left, mid, right):
     # if there are any
     while j < n2:
         arr[k] = R[j]
-        arr2[k] = R2[j]
-        arr3[k] = R3[j]
-        arr4[k] = R4[j]
+        arr2[k] = R2[j] #replicate
+        arr3[k] = R3[j] #replicate
+        arr4[k] = R4[j] #replicate
         j += 1
         k += 1
 
@@ -123,39 +123,42 @@ def merge_sort(arr,arr2,arr3,arr4,left,right):
     This function sorts an array in ascending order using the merge sort algorithm
     and swaps elements in the date array correspondingly.
 
-    :param expdate: The expiry date array to sort.
-    :param name: The name array that is swapped correspondingly
-    :param cctype: The credit card type array that is swapped correspondingly
-    :param ccnumber: The credit card number array that is swapped correspondingly 
+    :param arr: The expiry date array to sort.
+    :param arr2: The name array that is swapped correspondingly
+    :param arr3: The credit card type array that is swapped correspondingly
+    :param arr4: The credit card number array that is swapped correspondingly 
+    :param left: Leftmost index of the array.
+    :param right: Rightmost index of the array.
     :return: The sorted expdate, name, cctype, and ccnumber arrays.
     """
     if left < right:
-        mid = (left + right) // 2
+        mid = (left + right) // 2 #find the middle point
 
+        # using recursion, sort the first and second halves
         merge_sort(arr, arr2, arr3, arr4, left, mid)
-        
         merge_sort(arr, arr2, arr3, arr4, mid + 1, right)
-        
+        # Merge the sorted halves
         merge(arr, arr2, arr3, arr4, left, mid, right)
     
 def status_check(expdate,status):
     """
     This function will go through each exp date in the array and check whether or not
-    the date is expired, close to expiry, or not expired.
+    the date is expired, close to expiry, or not expired. Then append the status 
+    into the status array accordingly
     
     :param expdate: The expiry date array
     :param status: The array containing the status data
     
     """
-    for i in expdate:
-        if i <202501:
-            status.append("EXPIRED")
-        elif i ==202501:
-            status.append("RENEW IMMEDIATELY")
-        else:
-            status.append("NOT EXPIRED")
+    for i in expdate: #iterate through every expiry date
+        if i <202501: #if the date is earlier than jan 2025
+            status.append("EXPIRED") #it is expired
+        elif i ==202501: #if the date is during jan 2025
+            status.append("RENEW IMMEDIATELY") #renew immediately
+        else: #if the date is after jan 2025
+            status.append("NOT EXPIRED") #it is not expired
 
-file = 'data.dat'
+file = 'data.dat' #declare the file we are taking information from
 
 expdate = [] #create the array to store the merged expiry dates in YYYYMM format
 name = [] #create array to store the Name and Surname
