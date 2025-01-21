@@ -19,8 +19,8 @@ Variable dictionary:
     cn -A temporary string that holds the credit card number split from the file line.
     em - A temporary string that holds the expiry month split from the file line.
     ey -A temporary string that holds the expiry year split from the file line.
-    formatline - A string that stores the first line of the data.dat file of which we don't need
-        to extract information from.
+    formatline - A string that stores the first line of the data.dat file of which we
+        don't need to extract information from.
     line - A temporary variable that holds the next line of credit card data, stripped of 
         newline characters.
     fh - A file handle used to read from 'data.dat'.
@@ -36,7 +36,8 @@ Variable dictionary:
     R2 - A temporary array holding the right half of the second array during mergesort.
     R3 - A temporary array holding the right half of the third array during mergesort.
     R4 - A temporary array holding the right half of the fourth array during mergesort.
-    num - A temporary string that holds the merged year and month during the mergedate function.
+    num - A temporary string that holds the merged year and month during the
+        mergedate function.
     err - A variable that stores the operating system error during try and except.
     err2 -  A variable that stores the end of file error during try and except.
     err3 -  A variable that stores the permission error during try and except.
@@ -200,25 +201,30 @@ except EOFError as err2: #if there is an end of file error, catch it
     exit() #stop the program
 
 merge_sort(expdate,name,cctype,ccnumber,0,len(expdate)-1) 
-#sort the expiry date array, and mimic the sorting in the other arrays corresponding to the expdate.
+#sort the expiry date array, and mimic the sorting in the other arrays corresponding to
+#the expdate.
 status_check(expdate,status)#make a status for every expiry date
 
 try: #make a try and except in case opening the file goes wrong
     create = open('statussheet.txt',"w") #open/create the file "statussheet.txt"
     for i in range(len(expdate)): #iterate through every element in the expdate array
         if status[i] == "NOT EXPIRED": #if the status of the person we're on is "NOT EXPIRED" 
-            break #Then we break the for loop because we don't want to write any not exepired credit cards into the sheet.
+            #Then we break the for loop because we don't want to write any not exepired
+            #credit cards into the sheet.
+            break 
         else: #if the status is "EXPIRED" or "RENEW IMMEDIATELY"
-            line = ("%-38s %-13s %s %s %s" %(name[i]+":",cctype[i],ccnumber[i],expdate[i],status[i])) + "\n"
-            create.write(line) #then write the line "Name: cctype, ccnumber, expdate, and status.
+            line = ("%-38s %-13s %s %s %s"
+                    %(name[i]+":",cctype[i],ccnumber[i],expdate[i],status[i])) + "\n"
+            #then write the line "Name: cctype, ccnumber, expdate, and status.
+            create.write(line) 
     create.close() #close the file as we're doing writing now.
 except IOError as err: #if there is an input output error, catch it
     print("IOError: ", err) #print out the error
-     exit() #stop the program
+    exit() #stop the program
 except OSError as err2:  #if there is an operating system error, catch it
     print("OSError: ", err2) #print out the error
-     exit() #stop the program
+    exit() #stop the program
 except PermissionError as err3:  #if there is a permission error, catch it
     print("PermissionError: ", err3) #print out the error
-     exit() #stop the program
+    exit() #stop the program
 print("The file 'statussheet.txt' has successfully been created, please check your folders")
