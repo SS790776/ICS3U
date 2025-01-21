@@ -190,14 +190,14 @@ merge_sort(expdate,name,cctype,ccnumber,0,len(expdate)-1)
 status_check(expdate,status)#make a status for every expiry date
 
 try: #make a try and except in case opening the file goes wrong
-    create = open('statussheet.txt',"w")
-    for i in range(len(expdate)):
-        if expdate[i] == "NOT EXPIRED":
-            break
-        else:
+    create = open('statussheet.txt',"w") #open/create the file "statussheet.txt"
+    for i in range(len(expdate)): #iterate through every element in the expdate array
+        if status[i] == "NOT EXPIRED": #if the status of the person we're on is "NOT EXPIRED" 
+            break #Then we break the for loop because we don't want to write any not exepired credit cards into the sheet.
+        else: #if the status is "EXPIRED" or "RENEW IMMEDIATELY"
             line = ("%-38s %-13s %s %s %s" %(name[i]+":",cctype[i],ccnumber[i],expdate[i],status[i])) + "\n"
-            create.write(line)
-    create.close()
+            create.write(line) #then write the line "Name: cctype, ccnumber, expdate, and status.
+    create.close() #close the file as we're doing writing now.
 except IOError as err: #if there is an input output error, catch it
     print("IOError: ", err) #print out the error
      exit() #stop the program
@@ -207,3 +207,4 @@ except OSError as err2:  #if there is an operating system error, catch it
 except PermissionError as err3:  #if there is a permission error, catch it
     print("PermissionError: ", err3) #print out the error
      exit() #stop the program
+print("The file 'statussheet.txt' has successfully been created, please check your folders")
