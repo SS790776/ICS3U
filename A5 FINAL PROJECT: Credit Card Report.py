@@ -46,10 +46,16 @@ def mergedate(m,y):
 
 def merge(arr, arr2, arr3, arr4, left, mid, right):
     """
-    This function merges
+    This function recursively merges arrays, as a part of the mergesort algorithm.
+        This function is optimized to swap and merge multiple arrays following the 
+        same order of the exp date array being sorted.
     :param arr: 
+    :param arr2:
+    :param arr3: 
+    :param arr4: 
     :param left: 
-    :return: 
+    :param mid:
+    :param right:
     """
     n1 = mid - left + 1
     n2 = right - mid
@@ -179,22 +185,25 @@ except EOFError as err2: #if there is an error opening file error, catch it
     print("EOFError: ", err2) #print out the error
     exit() #stop the program
 
-merge_sort(expdate,name,cctype,ccnumber,0,len(expdate)-1)
+merge_sort(expdate,name,cctype,ccnumber,0,len(expdate)-1) 
+#sort the expiry date array, and mimic the sorting in the other arrays corresponding to the expdate.
+status_check(expdate,status)#make a status for every expiry date
 
-status_check(expdate,status)
-
-try:
+try: #make a try and except in case opening the file goes wrong
     create = open('statussheet.txt',"w")
     for i in range(len(expdate)):
         if expdate[i] == "NOT EXPIRED":
-            pass
+            break
         else:
             line = ("%-38s %-13s %s %s %s" %(name[i]+":",cctype[i],ccnumber[i],expdate[i],status[i])) + "\n"
             create.write(line)
     create.close()
-except IOError as err:
-    print("IOError: ", err)
-except OSError as err2:
-    print("OSError: ", err2)
-except PermissionError as err3:
-    print("PermissionError: ", err3)
+except IOError as err: #if there is an input output error, catch it
+    print("IOError: ", err) #print out the error
+     exit() #stop the program
+except OSError as err2:  #if there is an operating system error, catch it
+    print("OSError: ", err2) #print out the error
+     exit() #stop the program
+except PermissionError as err3:  #if there is a permission error, catch it
+    print("PermissionError: ", err3) #print out the error
+     exit() #stop the program
