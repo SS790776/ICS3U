@@ -4,31 +4,42 @@ Sean S
 ICS3U 
 Programming Assignment 4
 
-
 Variable dictionary:
-    arr - An array that contains the words or dates needed to be processed in functions
-    date - An array of integers representing merged dates in YYYYMMDD format.
-    words - An array of strings containing words from the Wordle archive.
-    m - A string representing the month (eg. "Jan", "Feb").
-    d - A string representing the day (eg. "01", "15").
-    y - A string representing the year (eg. "2024").
-    merged - An integer representing a merged date in YYYYMMDD format.
-    low - The starting index for binary search.
-    high - The ending index for binary search.
-    target - The value being searched for in an array.
-    size - The size of the array being sorted in exchange_sort.
-    temp - A temporary variable used for swapping words in exchange_sort.
-    temp2 - A temporary variable used for swapping dates in exchange_sort.
-    dw - User input to decide whether to search by date or word.
-    gety - User input for the year to search.
-    getm - User input for the month to search.
-    getd - User input for the day to search.
-    gotd - The merged integer date based on user input.
-    targword - A string that holds the desired word to be searched for.
-    index - The index of the target value found in the array.
-    sortedwords - An array, holding the sorted words.
-    sorteddates - An array, holding the corresponding dates.
-    u - A control variable for the program's main loop.
+    file - A string that holds the name of the file ('data.dat') of which we are working with.
+    expdate - An array that holds the merged expiry dates of the credit cards in YYYYMM format.
+    name - An array that holds the full names (name and surname) of the credit card users.
+    cctype - An array that contains the credit card types.
+    ccnumber - An array that holds the credit card numbers.
+    status - An array that holds the expiry status of each credit card.
+    merged - A temporary integer variable that holds a merged date in YYYYMM format to be 
+        appended to the expdate array.
+    n - A temporary string that holds the first name split from the file line.
+    sn - A temporary string that holds the surname split from the file line.
+    ct - A temporary string that holds the credit card type split from the file line.
+    cn -A temporary string that holds the credit card number split from the file line.
+    em - A temporary string that holds the expiry month split from the file line.
+    ey -A temporary string that holds the expiry year split from the file line.
+    formatline - A string that stores the first line of the data.dat file of which we don't need
+        to extract information from.
+    line - A temporary variable that holds the next line of credit card data, stripped of 
+        newline characters.
+    fh - A file handle used to read from 'data.dat'.
+    create - A file handle used to write output to 'statussheet.txt'.
+    mid - An integer representing the midpoint index of the array for merge sort.
+    left - An integer representing the leftmost index of the array for merge sort.
+    right - An integer representing the rightmost index of the array for merge sort.
+    L - A temporary array holding the left half of the primary array during mergesort.
+    L2 - A temporary array holding the left half of the second array during mergesort.
+    L3 - A temporary array holding the left half of the third array during mergesort.
+    L4 - A temporary array holding the left half of the fourth array during mergesort.
+    R - A temporary array holding the right half of the primary array during mergesort.
+    R2 - A temporary array holding the right half of the second array during mergesort.
+    R3 - A temporary array holding the right half of the third array during mergesort.
+    R4 - A temporary array holding the right half of the fourth array during mergesort.
+    num - A temporary string that holds the merged year and month during the mergedate function.
+    err - A variable that stores the operating system error during try and except.
+    err2 -  A variable that stores the end of file error during try and except.
+    err3 -  A variable that stores the permission error during try and except.
 """
 
 def mergedate(m,y):
@@ -184,7 +195,7 @@ try: #make a try and except in case opening the file goes wrong
 except OSError as err: #if there is an operating system error, catch it
     print("OSError: ", err) #print out the error
     exit() #stop the program
-except EOFError as err2: #if there is an error opening file error, catch it
+except EOFError as err2: #if there is an end of file error, catch it
     print("EOFError: ", err2) #print out the error
     exit() #stop the program
 
